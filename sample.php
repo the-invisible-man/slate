@@ -1,19 +1,19 @@
 <?php
 
-use Slate\Primitives\Sequence;
-use Slate\Primitives\Coordinate;
-use Slate\Primitives\Clips\Text;
-use Slate\Primitives\Clips\Image;
-use Slate\Primitives\Clips\Rectangle;
-use Slate\Primitives\Animations\Interfaces\FadeIn;
-use Slate\Primitives\Animations\Interfaces\FadeOut;
-use Slate\Primitives\Animations\Interfaces\Compound;
-use Slate\Primitives\Animations\Interfaces\Freeze;
-use Slate\Primitives\Animations\Interfaces\Motion;
-use Slate\Primitives\Composition;
-use Slate\Engine\Renderer;
-use Slate\Engine\RenderSettings;
-use Slate\Primitives\Clips\Abstracts\VideoClip;
+use TheInvisibleMan\Slate\Primitives\Sequence;
+use TheInvisibleMan\Slate\Primitives\Coordinate;
+use TheInvisibleMan\Slate\Primitives\Clips\Text;
+use TheInvisibleMan\Slate\Primitives\Clips\Image;
+use TheInvisibleMan\Slate\Primitives\Clips\Rectangle;
+use TheInvisibleMan\Slate\Primitives\Animations\Interfaces\FadeIn;
+use TheInvisibleMan\Slate\Primitives\Animations\Interfaces\FadeOut;
+use TheInvisibleMan\Slate\Primitives\Animations\Interfaces\Compound;
+use TheInvisibleMan\Slate\Primitives\Animations\Interfaces\Freeze;
+use TheInvisibleMan\Slate\Primitives\Animations\Interfaces\Motion;
+use TheInvisibleMan\Slate\Primitives\Composition;
+use TheInvisibleMan\Slate\Engine\Renderer;
+use TheInvisibleMan\Slate\Engine\RenderSettings;
+use TheInvisibleMan\Slate\Primitives\Clips\Abstracts\VideoClip;
 
 /**
  * Slate: A PHP library generating audiovisual content
