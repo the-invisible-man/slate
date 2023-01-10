@@ -15,4 +15,13 @@ class Frame
     {
 
     }
+
+    /**
+     * @param VideoClip $clip
+     * @return void
+     */
+    public function layerVideoClip(VideoClip $clip): void
+    {
+        $this->layers[] = $clip;
+    }
 }

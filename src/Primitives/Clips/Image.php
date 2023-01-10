@@ -3,16 +3,10 @@
 namespace TheInvisibleMan\Slate\Primitives\Clips;
 
 use JetBrains\PhpStorm\Pure;
-use TheInvisibleMan\Slate\Primitives\Clips\Traits\HasAnimationsImpl;
-use TheInvisibleMan\Slate\Primitives\Clips\Traits\HasPositionImpl;
-use TheInvisibleMan\Slate\Primitives\Clips\Interfaces\HasAnimations;
-use TheInvisibleMan\Slate\Primitives\Clips\Interfaces\HasPosition;
 use TheInvisibleMan\Slate\Primitives\Clips\Abstracts\VideoClip;
 
-class Image extends VideoClip implements HasPosition, HasAnimations
+class Image extends VideoClip
 {
-    use HasPositionImpl, HasAnimationsImpl;
-
     /**
      * @var string
      */

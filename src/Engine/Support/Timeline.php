@@ -13,10 +13,32 @@ class Timeline
      * @param Frame $frame
      * @return $this
      */
-    public function addFrame(Frame $frame): self
+    public function addFrame(Frame $frame, int $frameNumber): self
     {
-        $this->frames[] = $frame;
+        $this->frames[$frameNumber] = $frame;
         return $this;
+    }
+
+    /**
+     * @param array $frames
+     * @return void
+     */
+    public function appendFrames(array $frames): void
+    {
+        $this->frameRate += $frames;
+    }
+
+    /**
+     * @param int $frameNumber
+     * @return Frame
+     */
+    public function getFrame(int $frameNumber): Frame
+    {
+        if (!isset($this->frames[$frameNumber])) {
+            throw new \RuntimeException("Render failure: frame number {$frameNumber} is invalid.");
+        }
+
+        return $this->frames[$frameNumber];
     }
 
     /**

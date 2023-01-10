@@ -39,6 +39,24 @@ class Coordinate
     }
 
     /**
+     * @param int $operand
+     * @return $this
+     */
+    #[Pure] public function addX(int $operand): self
+    {
+        return new self ($this->x + $operand, $this->y);
+    }
+
+    /**
+     * @param int $operand
+     * @return $this
+     */
+    #[Pure] public function addY(int $operand): self
+    {
+        return new self($this->x, $this->y + $operand);
+    }
+
+    /**
      * @param int $newY
      * @return $this
      */

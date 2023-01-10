@@ -18,4 +18,12 @@ class Composition
         $this->sequences[] = $sequence;
         return $this;
     }
+
+    /**
+     * @return Sequence[]
+     */
+    public function getSequences(): array
+    {
+        return $this->sequences;
+    }
 }

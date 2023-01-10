@@ -39,7 +39,7 @@ trait HasAnimationsImpl
     }
 
     /**
-     * @return array
+     * @return Animation[]
      */
     public function getAnimations(): array
     {

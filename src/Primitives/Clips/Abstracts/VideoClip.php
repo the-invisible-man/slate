@@ -3,9 +3,15 @@
 namespace TheInvisibleMan\Slate\Primitives\Clips\Abstracts;
 
 use TheInvisibleMan\Slate\Exceptions\ClipSettingException;
+use TheInvisibleMan\Slate\Primitives\Clips\Interfaces\HasAnimations;
+use TheInvisibleMan\Slate\Primitives\Clips\Interfaces\HasPosition;
+use TheInvisibleMan\Slate\Primitives\Clips\Traits\HasAnimationsImpl;
+use TheInvisibleMan\Slate\Primitives\Clips\Traits\HasPositionImpl;
 
-abstract class VideoClip extends Clip
+abstract class VideoClip extends Clip implements HasAnimations, HasPosition
 {
+    use HasPositionImpl, HasAnimationsImpl;
+
     /**
      * @var string
      */
@@ -24,6 +30,11 @@ abstract class VideoClip extends Clip
      * @return string
      */
     abstract public function checksum(): string;
+
+    /**
+     * @return void
+     */
+    abstract public function __clone(): void;
 
     /**
      * @param string $anchorPoint

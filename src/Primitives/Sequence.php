@@ -30,12 +30,12 @@ class Sequence
     /**
      * @var VideoClip[]
      */
-    protected array $layers = [];
+    protected array $videoLayers = [];
 
     /**
      * @var AudioClip[]
      */
-    protected array $audio = [];
+    protected array $audioLayers = [];
 
     /**
      * @return Coordinate
@@ -58,8 +58,8 @@ class Sequence
      */
     public function layerVideoClip(VideoClip $clip): int
     {
-        $this->layers[] = $clip;
-        return count($this->layers) - 1;
+        $this->videoLayers[] = $clip;
+        return count($this->videoLayers) - 1;
     }
 
     /**
@@ -68,8 +68,16 @@ class Sequence
      */
     public function layerAudio(AudioClip $audio): int
     {
-        $this->audio[] = $audio;
-        return count($this->audio) - 1;
+        $this->audioLayers[] = $audio;
+        return count($this->audioLayers) - 1;
+    }
+
+    /**
+     * @return VideoClip[]
+     */
+    public function getVideoClips(): array
+    {
+        return $this->videoLayers;
     }
 
     /**

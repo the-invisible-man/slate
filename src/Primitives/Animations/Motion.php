@@ -1,9 +1,10 @@
 <?php
 
-namespace TheInvisibleMan\Slate\Primitives\Animations\Interfaces;
+namespace TheInvisibleMan\Slate\Primitives\Animations;
 
 use TheInvisibleMan\Slate\Primitives\Animations\Traits\IsAnimation;
 use TheInvisibleMan\Slate\Primitives\Coordinate;
+use TheInvisibleMan\Slate\Primitives\Animations\Interfaces\Animation;
 
 class Motion implements Animation
 {
@@ -53,5 +54,13 @@ class Motion implements Animation
     {
         $this->endingPosition = $endingPosition;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnimator(): string
+    {
+        return \TheInvisibleMan\Slate\Engine\Animators\Motion::class;
     }
 }

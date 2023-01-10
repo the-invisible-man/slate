@@ -103,8 +103,8 @@ $sequence->layerVideoClip($text);           // Middle layer
 $sequence->layerVideoClip($watermark);      // Top layer
 
 // Drop one or more sequences into the timeline
-$timeline = new Composition;
-$timeline->append($sequence);
+$comp = new Composition;
+$comp->append($sequence);
 
 $renderer = new Renderer;
 $settings = new RenderSettings;
@@ -113,4 +113,4 @@ $settings->frameRate = 24;
 $settings->exportPath = '/Users/cgranados/output.mp4';
 $settings->workingDirectory = '/Users/cgranados/slate-working-dir';
 
-$renderer->render($timeline, $settings);
+$renderer->render($comp, $settings);
