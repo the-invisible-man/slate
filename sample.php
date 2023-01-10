@@ -84,9 +84,9 @@ $textExitTween->add($moveOut)
     ->add($fadeOut);
 
 // Animate object
-$text->addAnimation($textEnterTween)
-    ->addAnimation($freeze)
-    ->addAnimation($textExitTween);
+$text->addAnimation($textEnterTween);
+//    ->addAnimation($freeze)
+//    ->addAnimation($textExitTween);
 
 // We want the rectangle to stay in view the whole time so
 // just make it last the same as the text layer
@@ -99,9 +99,9 @@ $textBackground->addAnimation($stillFrame);
 $watermark->addAnimation($stillFrame);
 
 // Layers are stacked in the order in which they are added into the sequence
-$sequence->layerVideoClip($textBackground); // Bottom layer
+//$sequence->layerVideoClip($textBackground); // Bottom layer
 $sequence->layerVideoClip($text);           // Middle layer
-$sequence->layerVideoClip($watermark);      // Top layer
+//$sequence->layerVideoClip($watermark);      // Top layer
 
 // Drop one or more sequences into the timeline
 $comp = new Composition;

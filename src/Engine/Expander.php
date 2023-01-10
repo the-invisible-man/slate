@@ -39,10 +39,12 @@ class Expander
     protected function expandSequence(Sequence $sequence, RenderSettings $renderSettings): array
     {
         $frameBuffer = [];
+        $startingFrame = 0;
 
         foreach ($sequence->getVideoClips() as $clip) {
             foreach ($clip->getAnimations() as $animation) {
-                $animation->getAnimator()->animate($clip, $frameBuffer, $animation, $renderSettings);
+                $animation->getAnimator()->animate($clip, $startingFrame, $frameBuffer, $animation, $renderSettings);
+                $startingFrame += $animation->getDuration() + 1;
             }
         }
 

@@ -11,12 +11,13 @@ abstract class Animator
 {
     /**
      * @param VideoClip $clip
+     * @param int $startingFrame
      * @param array $frameBuffer
      * @param Animation|mixed $animationSettings
      * @param RenderSettings $renderSettings
      * @return void
      */
-    abstract public function animate(VideoClip $clip, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void;
+    abstract public function animate(VideoClip $clip, int $startingFrame, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void;
 
     /**
      * @param int $frameNumber
@@ -56,9 +57,15 @@ abstract class Animator
      * @param int $duration
      * @return int
      */
-    protected function calculateSpeed(int $startingValue, int $endingValue, int $duration): int
+    protected function calculateSpeed(int $startingValue, int $endingValue, int $duration, bool $roundUp = true): int
     {
         $distance = $endingValue - $startingValue;
-        return (int) ($distance / $duration);
+        $speed = (int) ($distance / $duration);
+
+        if ($roundUp && ((int) $speed) < $speed) {
+            return (int) $speed + 1;
+        }
+
+        return $speed;
     }
 }

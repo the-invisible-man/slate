@@ -15,12 +15,13 @@ class Motion extends Animator
      * and calculates the values in between.
      *
      * @param VideoClip $clip
+     * @param int $startingFrame
      * @param Frame[] $frameBuffer
      * @param Animation|MotionAnimation $animationSettings
      * @param RenderSettings $renderSettings
      * @return void
      */
-    public function animate(VideoClip $clip, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void
+    public function animate(VideoClip $clip, int $startingFrame, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void
     {
         $speedX = $this->calculateSpeed(
             $animationSettings->getStartingPosition()->getX(),
@@ -35,10 +36,11 @@ class Motion extends Animator
         );
 
         // Set first frame. Position should be the same
-        $frame = $this->getOrCreateFrame(0, $frameBuffer);
+        $frame = $this->getOrCreateFrame($startingFrame, $frameBuffer);
         $frame->layerVideoClip($clip);
+        $startingFrame++;
 
-        foreach($this->getOrCreateFrames(1, $animationSettings->getDuration(), $frameBuffer) as $frame) {
+        foreach($this->getOrCreateFrames($startingFrame, $animationSettings->getDuration(), $frameBuffer) as $frame) {
             $newFrameClip = $frame->getOrCreateClipByInitialInstance($clip);
             $newPosition = $clip->getPosition()->addX($speedX)
                                                ->addY($speedY);

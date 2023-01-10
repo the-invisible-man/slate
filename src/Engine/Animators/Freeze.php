@@ -8,7 +8,7 @@ use TheInvisibleMan\Slate\Primitives\Clips\Abstracts\VideoClip;
 
 class Freeze extends Animator
 {
-    public function animate(VideoClip $clip, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void
+    public function animate(VideoClip $clip, int $startingFrame, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void
     {
         foreach ($this->getOrCreateFrames(0, $animationSettings->getDuration(), $frameBuffer) as $frame) {
 

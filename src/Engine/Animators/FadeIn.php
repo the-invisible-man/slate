@@ -11,24 +11,27 @@ class FadeIn extends Animator
 {
     /**
      * @param VideoClip $clip
+     * @param int $startingFrame
      * @param array $frameBuffer
      * @param Animation|\TheInvisibleMan\Slate\Primitives\Animations\FadeIn $animationSettings
      * @param RenderSettings $renderSettings
      * @return void
      */
-    public function animate(VideoClip $clip, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void
+    public function animate(VideoClip $clip, int $startingFrame, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void
     {
         $speed = $this->calculateSpeed(0, 100, $animationSettings->getDuration());
 
         $opacityTracker = 0;
         $opacity = (new Opacity)->setOpacity($opacityTracker);
         $clip->addFilter($opacity);
-        $this->getOrCreateFrame(0, $frameBuffer)
+        $this->getOrCreateFrame($startingFrame, $frameBuffer)
              ->layerVideoClip($clip);
+        $startingFrame++;
 
-        foreach($this->getOrCreateFrames(1, $animationSettings->getDuration(), $frameBuffer) as $frame) {
+        foreach($this->getOrCreateFrames($startingFrame, $animationSettings->getDuration(), $frameBuffer) as $frame) {
+            $opacityTracker += $speed;
             $newClip = $frame->getOrCreateClipByInitialInstance($clip);
-            $newOpacity = (new Opacity)->setOpacity($opacityTracker + $speed);
+            $newOpacity = (new Opacity)->setOpacity($opacityTracker);
 
             $newClip->addFilter($newOpacity);
         }
