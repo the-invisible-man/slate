@@ -26,9 +26,21 @@ class Compound implements Animation
             throw new AnimationException("Compound animations should comprise animations of the same length");
         }
 
+        if ($animation instanceof self) {
+            throw new AnimationException("Compounds cannot contain other Compounds.");
+        }
+
         $this->animations[] = $animation;
 
         return $this;
+    }
+
+    /**
+     * @return Animation[]
+     */
+    public function getAnimations(): array
+    {
+        return $this->animations;
     }
 
     /**

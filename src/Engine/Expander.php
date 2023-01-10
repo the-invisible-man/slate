@@ -45,21 +45,11 @@ class Expander
 
         foreach ($sequence->getVideoClips() as $clip) {
             foreach ($clip->getAnimations() as $animation) {
-                $animator = $this->buildAnimator($animation);
-                $animator->animate($clip, $frameBuffer, $animation, $renderSettings);
+                $animation->getAnimator()->animate($clip, $frameBuffer, $animation, $renderSettings);
             }
         }
 
         return $frameBuffer;
-    }
-
-    /**
-     * @param Animation $animation
-     * @return Animator
-     */
-    protected function buildAnimator(Animation $animation): Animator
-    {
-        return new $animation->getAnimator();
     }
 
     /**

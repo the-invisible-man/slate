@@ -106,11 +106,13 @@ $sequence->layerVideoClip($watermark);      // Top layer
 $comp = new Composition;
 $comp->append($sequence);
 
-$renderer = new Renderer;
+$expander = new \TheInvisibleMan\Slate\Engine\Expander;
 $settings = new RenderSettings;
 
 $settings->frameRate = 24;
 $settings->exportPath = '/Users/cgranados/output.mp4';
 $settings->workingDirectory = '/Users/cgranados/slate-working-dir';
 
-$renderer->render($comp, $settings);
+$timeline = $expander->expand($comp, $settings);
+
+\Symfony\Component\VarDumper\VarDumper::dump($timeline);

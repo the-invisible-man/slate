@@ -2,6 +2,8 @@
 
 namespace TheInvisibleMan\Slate\Primitives\Animations\Interfaces;
 
+use TheInvisibleMan\Slate\Engine\Animators\Animator;
+
 interface Animation
 {
     /**
@@ -16,7 +18,7 @@ interface Animation
     public function getDuration(): int;
 
     /**
-     * @return string
+     * @return Animator
      */
-    public function getAnimator(): string;
+    public function getAnimator(): Animator;
 }

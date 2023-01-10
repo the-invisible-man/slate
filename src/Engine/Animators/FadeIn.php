@@ -25,7 +25,7 @@ class FadeIn extends Animator
         $opacity = (new Opacity)->setOpacity($opacityTracker);
         $clip->addFilter($opacity);
         $this->getOrCreateFrame(0, $frameBuffer)
-            ->layerVideoClip($firstFrameClip);
+             ->layerVideoClip($firstFrameClip);
 
         foreach($this->getOrCreateFrames(1, $animationSettings->getDuration(), $frameBuffer) as $frame) {
             $newClip = clone $clip;

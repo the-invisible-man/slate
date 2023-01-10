@@ -17,6 +17,9 @@ class Compound extends Animator
      */
     public function animate(VideoClip $clip, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void
     {
-
+        foreach ($animationSettings->getAnimations() as $animation) {
+            $animator = $animation->getAnimator();
+            $animator->animate($clip, $frameBuffer, $animation, $renderSettings);
+        }
     }
 }
