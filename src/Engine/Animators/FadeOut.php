@@ -7,7 +7,7 @@ use TheInvisibleMan\Slate\Primitives\Animations\Interfaces\Animation;
 use TheInvisibleMan\Slate\Primitives\Clips\Abstracts\VideoClip;
 use TheInvisibleMan\Slate\Primitives\Clips\Filters\Opacity;
 
-class FadeIn extends Animator
+class FadeOut extends Animator
 {
     /**
      * @param VideoClip $clip
@@ -21,7 +21,7 @@ class FadeIn extends Animator
         $speed = $this->calculateSpeed(0, 100, $animationSettings->getDuration());
         $firstFrameClip = clone $clip;
 
-        $opacityTracker = 0;
+        $opacityTracker = 100;
         $opacity = (new Opacity)->setOpacity($opacityTracker);
         $clip->addFilter($opacity);
         $this->getOrCreateFrame(0, $frameBuffer)
@@ -29,7 +29,7 @@ class FadeIn extends Animator
 
         foreach($this->getOrCreateFrames(1, $animationSettings->getDuration(), $frameBuffer) as $frame) {
             $newClip = clone $clip;
-            $newOpacity = (new Opacity)->setOpacity($opacityTracker + $speed);
+            $newOpacity = (new Opacity)->setOpacity($opacityTracker - $speed);
 
             $newClip->addFilter($newOpacity);
             $frame->layerVideoClip($newClip);

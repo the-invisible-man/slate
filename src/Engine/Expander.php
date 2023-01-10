@@ -63,17 +63,6 @@ class Expander
     }
 
     /**
-     * @param VideoClip $clip
-     * @param int $frameNumber
-     * @param Animator[] $animators
-     * @return VideoClip
-     */
-    protected function animateFrame(VideoClip $clip, int $frameNumber, array $animators): VideoClip
-    {
-
-    }
-
-    /**
      *
      * @param Composition $composition
      * @return void

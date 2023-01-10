@@ -33,6 +33,21 @@ abstract class Animator
     }
 
     /**
+     * Generator for when working with multiple frames. Helpful with animations.
+     *
+     * @param int $start
+     * @param int $end
+     * @param array $frameBuffer
+     * @return \Iterator
+     */
+    protected function getOrCreateFrames(int $start, int $end, array &$frameBuffer): \Iterator
+    {
+        for ($i = $start; $i <= $end; $i++) {
+            yield $this->getOrCreateFrame($i, $frameBuffer);
+        }
+    }
+
+    /**
      * Calculates the necessary speed a value need to increase by to reach its destination
      * within a given number of frames.
      *
@@ -41,9 +56,9 @@ abstract class Animator
      * @param int $duration
      * @return int
      */
-    protected function speedCalculator(int $startingValue, int $endingValue, int $duration): int
+    protected function calculateSpeed(int $startingValue, int $endingValue, int $duration): int
     {
         $distance = $endingValue - $startingValue;
-        return $distance / ($duration - 1);
+        return $distance / $duration;
     }
 }

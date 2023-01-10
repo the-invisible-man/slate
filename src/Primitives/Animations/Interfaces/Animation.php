@@ -2,8 +2,6 @@
 
 namespace TheInvisibleMan\Slate\Primitives\Animations\Interfaces;
 
-use TheInvisibleMan\Slate\Engine\Animators\Animator;
-
 interface Animation
 {
     /**

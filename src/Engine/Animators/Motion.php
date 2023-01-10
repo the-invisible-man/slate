@@ -22,13 +22,13 @@ class Motion extends Animator
      */
     public function animate(VideoClip $clip, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void
     {
-        $speedX = $this->speedCalculator(
+        $speedX = $this->calculateSpeed(
             $animationSettings->getStartingPosition()->getX(),
             $animationSettings->getEndingPosition()->getX(),
             $animationSettings->getDuration())
         ;
 
-        $speedY = $this->speedCalculator(
+        $speedY = $this->calculateSpeed(
             $animationSettings->getStartingPosition()->getY(),
             $animationSettings->getEndingPosition()->getY(),
             $animationSettings->getDuration()
@@ -38,10 +38,8 @@ class Motion extends Animator
         $frame = $this->getOrCreateFrame(0, $frameBuffer);
         $frame->layerVideoClip($clip);
 
-        for ($i = 1; $i <= $animationSettings->getDuration(); $i++) {
-            $frame = $this->getOrCreateFrame($i, $frameBuffer);
+        foreach($this->getOrCreateFrames(1, $animationSettings->getDuration(), $frameBuffer) as $frame) {
             $newFrameClip = clone $clip;
-
             $newPosition = $clip->getPosition()->addX($speedX)
                                                ->addY($speedY);
 

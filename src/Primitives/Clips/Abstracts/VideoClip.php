@@ -4,13 +4,15 @@ namespace TheInvisibleMan\Slate\Primitives\Clips\Abstracts;
 
 use TheInvisibleMan\Slate\Exceptions\ClipSettingException;
 use TheInvisibleMan\Slate\Primitives\Clips\Interfaces\HasAnimations;
+use TheInvisibleMan\Slate\Primitives\Clips\Interfaces\HasFilters;
 use TheInvisibleMan\Slate\Primitives\Clips\Interfaces\HasPosition;
 use TheInvisibleMan\Slate\Primitives\Clips\Traits\HasAnimationsImpl;
+use TheInvisibleMan\Slate\Primitives\Clips\Traits\HasFiltersImpl;
 use TheInvisibleMan\Slate\Primitives\Clips\Traits\HasPositionImpl;
 
-abstract class VideoClip extends Clip implements HasAnimations, HasPosition
+abstract class VideoClip extends Clip implements HasAnimations, HasPosition, HasFilters
 {
-    use HasPositionImpl, HasAnimationsImpl;
+    use HasPositionImpl, HasAnimationsImpl, HasFiltersImpl;
 
     /**
      * @var string
