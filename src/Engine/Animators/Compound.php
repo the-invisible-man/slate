@@ -2,6 +2,7 @@
 
 namespace TheInvisibleMan\Slate\Engine\Animators;
 
+use Symfony\Component\VarDumper\VarDumper;
 use TheInvisibleMan\Slate\Engine\RenderSettings;
 use TheInvisibleMan\Slate\Primitives\Animations\Interfaces\Animation;
 use TheInvisibleMan\Slate\Primitives\Clips\Abstracts\VideoClip;
@@ -19,6 +20,7 @@ class Compound extends Animator
     {
         foreach ($animationSettings->getAnimations() as $animation) {
             $animator = $animation->getAnimator();
+            VarDumper::dump(get_class($animation));
             $animator->animate($clip, $startingFrame, $frameBuffer, $animation, $renderSettings);
         }
     }

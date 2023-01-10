@@ -7,6 +7,7 @@ use TheInvisibleMan\Slate\Engine\Support\Frame;
 use TheInvisibleMan\Slate\Primitives\Animations\Interfaces\Animation;
 use TheInvisibleMan\Slate\Primitives\Clips\Abstracts\VideoClip;
 use TheInvisibleMan\Slate\Primitives\Animations\Motion as MotionAnimation;
+use TheInvisibleMan\Slate\Primitives\Coordinate;
 
 class Motion extends Animator
 {
@@ -26,8 +27,8 @@ class Motion extends Animator
         $speedX = $this->calculateSpeed(
             $animationSettings->getStartingPosition()->getX(),
             $animationSettings->getEndingPosition()->getX(),
-            $animationSettings->getDuration())
-        ;
+            $animationSettings->getDuration()
+        );
 
         $speedY = $this->calculateSpeed(
             $animationSettings->getStartingPosition()->getY(),
@@ -40,12 +41,15 @@ class Motion extends Animator
         $frame->layerVideoClip($clip);
         $startingFrame++;
 
-        foreach($this->getOrCreateFrames($startingFrame, $animationSettings->getDuration(), $frameBuffer) as $frame) {
-            $newFrameClip = $frame->getOrCreateClipByInitialInstance($clip);
-            $newPosition = $clip->getPosition()->addX($speedX)
-                                               ->addY($speedY);
+        $lastX = $clip->getPosition()->getX();
+        $lastY = $clip->getPosition()->getY();
 
-            $newFrameClip->setPosition($newPosition);
+        foreach($this->getOrCreateFrames($startingFrame, $animationSettings->getDuration(), $frameBuffer) as $frame) {
+            $lastX += $speedX;
+            $lastY += $speedY;
+
+            $newFrameClip = $frame->getOrCreateClipByInitialInstance($clip);
+            $newFrameClip->setPosition(new Coordinate($lastX, $lastY));
         }
     }
 }

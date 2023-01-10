@@ -26,7 +26,7 @@ $sequence->setHeight(720)
     ->setWidth(1280)
     ->setBackground('#fff');
 
-$textInitialPosition = $sequence->center();
+$textInitialPosition = $sequence->center()->addY(-300);
 
 // This is the text we want to show
 // We'll wrap it inside a container so that it stays within its box
@@ -60,11 +60,13 @@ $fadeOut->setDuration(6);
 
 // Position animations simply override the objects
 // relative in the stage position
-$moveToTarget = $textInitialPosition->y(300);
+$moveToTarget = $textInitialPosition->addY(300);
 $moveIn = new Motion;
 $moveIn->setDuration(6)
     ->setStartingPosition($textInitialPosition)
     ->setEndingPosition($moveToTarget);
+
+\Symfony\Component\VarDumper\VarDumper::dump($moveIn);
 
 $moveOut = new Motion;
 $moveOut->setDuration(6)
