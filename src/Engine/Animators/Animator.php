@@ -59,6 +59,6 @@ abstract class Animator
     protected function calculateSpeed(int $startingValue, int $endingValue, int $duration): int
     {
         $distance = $endingValue - $startingValue;
-        return $distance / $duration;
+        return (int) ($distance / $duration);
     }
 }

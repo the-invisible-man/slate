@@ -2,10 +2,7 @@
 
 namespace TheInvisibleMan\Slate\Engine;
 
-use TheInvisibleMan\Slate\Engine\Animators\Animator;
 use TheInvisibleMan\Slate\Engine\Support\Timeline;
-use TheInvisibleMan\Slate\Primitives\Animations\Interfaces\Animation;
-use TheInvisibleMan\Slate\Primitives\Clips\Abstracts\VideoClip;
 use TheInvisibleMan\Slate\Primitives\Composition;
 use TheInvisibleMan\Slate\Primitives\Sequence;
 

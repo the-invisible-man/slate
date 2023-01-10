@@ -25,7 +25,7 @@ class Timeline
      */
     public function appendFrames(array $frames): void
     {
-        $this->frameRate += $frames;
+        $this->frames[] = $frames;
     }
 
     /**

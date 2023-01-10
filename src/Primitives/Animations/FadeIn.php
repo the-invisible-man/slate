@@ -2,6 +2,7 @@
 
 namespace TheInvisibleMan\Slate\Primitives\Animations;
 
+use TheInvisibleMan\Slate\Engine\Animators\Animator;
 use TheInvisibleMan\Slate\Primitives\Animations\Traits\IsAnimation;
 use TheInvisibleMan\Slate\Primitives\Animations\Interfaces\Animation;
 
@@ -9,8 +10,11 @@ class FadeIn implements Animation
 {
     use IsAnimation;
 
-    public function getAnimator(): string
+    /**
+     * @return Animator
+     */
+    public function getAnimator(): Animator
     {
-        // TODO: Implement getAnimator() method.
+        return new \TheInvisibleMan\Slate\Engine\Animators\FadeIn;
     }
 }

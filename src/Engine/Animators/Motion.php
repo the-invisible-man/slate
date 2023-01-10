@@ -39,12 +39,11 @@ class Motion extends Animator
         $frame->layerVideoClip($clip);
 
         foreach($this->getOrCreateFrames(1, $animationSettings->getDuration(), $frameBuffer) as $frame) {
-            $newFrameClip = clone $clip;
+            $newFrameClip = $frame->getOrCreateClipByInitialInstance($clip);
             $newPosition = $clip->getPosition()->addX($speedX)
                                                ->addY($speedY);
 
             $newFrameClip->setPosition($newPosition);
-            $frame->layerVideoClip($newFrameClip);
         }
     }
 }

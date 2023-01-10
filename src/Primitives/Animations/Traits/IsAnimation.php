@@ -9,7 +9,7 @@ trait IsAnimation
      *
      * @var int
      */
-    protected int $duration;
+    protected int $duration = 0;
 
     /**
      * @return int

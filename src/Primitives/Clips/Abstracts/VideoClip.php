@@ -34,11 +34,6 @@ abstract class VideoClip extends Clip implements HasAnimations, HasPosition, Has
     abstract public function checksum(): string;
 
     /**
-     * @return void
-     */
-    abstract public function __clone(): void;
-
-    /**
      * @param string $anchorPoint
      * @return $this
      * @throws ClipSettingException

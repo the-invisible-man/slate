@@ -19,20 +19,18 @@ class FadeOut extends Animator
     public function animate(VideoClip $clip, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void
     {
         $speed = $this->calculateSpeed(0, 100, $animationSettings->getDuration());
-        $firstFrameClip = clone $clip;
 
         $opacityTracker = 100;
         $opacity = (new Opacity)->setOpacity($opacityTracker);
         $clip->addFilter($opacity);
         $this->getOrCreateFrame(0, $frameBuffer)
-            ->layerVideoClip($firstFrameClip);
+            ->layerVideoClip($clip);
 
         foreach($this->getOrCreateFrames(1, $animationSettings->getDuration(), $frameBuffer) as $frame) {
-            $newClip = clone $clip;
+            $newClip = $frame->getOrCreateClipByInitialInstance($clip);
             $newOpacity = (new Opacity)->setOpacity($opacityTracker - $speed);
 
             $newClip->addFilter($newOpacity);
-            $frame->layerVideoClip($newClip);
         }
     }
 }

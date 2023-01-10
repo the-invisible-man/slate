@@ -11,9 +11,10 @@ use TheInvisibleMan\Slate\Primitives\Animations\Compound;
 use TheInvisibleMan\Slate\Primitives\Animations\Freeze;
 use TheInvisibleMan\Slate\Primitives\Animations\Motion;
 use TheInvisibleMan\Slate\Primitives\Composition;
-use TheInvisibleMan\Slate\Engine\Renderer;
 use TheInvisibleMan\Slate\Engine\RenderSettings;
 use TheInvisibleMan\Slate\Primitives\Clips\Abstracts\VideoClip;
+
+require_once './vendor/autoload.php';
 
 /**
  * Slate: A PHP library generating audiovisual content
