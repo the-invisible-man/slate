@@ -19,20 +19,32 @@ class FadeOut extends Animator
      */
     public function animate(VideoClip $clip, int $startingFrame, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void
     {
-        $speed = $this->calculateSpeed(0, 100, $animationSettings->getDuration());
+        $startingOpacity = 100;
+        $targetOpacity = 0;
+
+        $speed = $this->calculateSpeed($startingOpacity, $targetOpacity, $animationSettings->getDuration());
 
         $opacityTracker = 100;
         $opacity = (new Opacity)->setOpacity($opacityTracker);
         $clip->addFilter($opacity);
         $this->getOrCreateFrame($startingFrame, $frameBuffer)
             ->layerVideoClip($clip);
+        $lastFrame = $startingFrame + $animationSettings->getDuration();
+
         $startingFrame++;
 
-        foreach($this->getOrCreateFrames($startingFrame, $animationSettings->getDuration(), $frameBuffer) as $frame) {
+        foreach($this->getOrCreateFrames($startingFrame, $lastFrame - 1, $frameBuffer) as $frame) {
+            $opacityTracker += $speed;
             $newClip = $frame->getOrCreateClipByInitialInstance($clip);
-            $newOpacity = (new Opacity)->setOpacity($opacityTracker - $speed);
+            $newOpacity = (new Opacity)->setOpacity($opacityTracker);
 
             $newClip->addFilter($newOpacity);
         }
+
+        $frame = $this->getOrCreateFrame($lastFrame, $frameBuffer);
+        $newClip = $frame->getOrCreateClipByInitialInstance($clip);
+        $newOpacity = (new Opacity)->setOpacity($targetOpacity);
+
+        $newClip->addFilter($newOpacity);
     }
 }

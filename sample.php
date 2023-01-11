@@ -68,7 +68,7 @@ $moveIn->setDuration(6)
 
 $moveOut = new Motion;
 $moveOut->setDuration(6)
-    ->setTargetPosition($moveToTarget->y(600));
+    ->setTargetPosition($moveToTarget->addY(600));
 
 // Compounds allow us to mix two effects into
 // the same animation. Here we're joining the fade with the
@@ -84,8 +84,8 @@ $textExitTween->add($moveOut)
 
 // Animate object
 $text->addAnimation($textEnterTween)
-    ->addAnimation($freeze);
-//    ->addAnimation($textExitTween);
+    ->addAnimation($freeze)
+    ->addAnimation($textExitTween);
 
 // We want the rectangle to stay in view the whole time so
 // just make it last the same as the text layer

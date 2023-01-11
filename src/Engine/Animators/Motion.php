@@ -39,12 +39,13 @@ class Motion extends Animator
         // Set first frame. Position should be the same
         $frame = $this->getOrCreateFrame($startingFrame, $frameBuffer);
         $frame->layerVideoClip($clip);
+        $lastFrame = $startingFrame + $animationSettings->getDuration();
         $startingFrame++;
 
         $lastX = $clip->getPosition()->getX();
         $lastY = $clip->getPosition()->getY();
 
-        foreach($this->getOrCreateFrames($startingFrame, $animationSettings->getDuration(), $frameBuffer) as $frame) {
+        foreach($this->getOrCreateFrames($startingFrame, $lastFrame, $frameBuffer) as $frame) {
             $lastX += $speedX;
             $lastY += $speedY;
 
