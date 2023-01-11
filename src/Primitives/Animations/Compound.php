@@ -31,6 +31,7 @@ class Compound implements Animation
             throw new AnimationException("Compounds cannot contain other Compounds.");
         }
 
+        $this->duration = $animation->getDuration();
         $this->animations[] = $animation;
 
         return $this;

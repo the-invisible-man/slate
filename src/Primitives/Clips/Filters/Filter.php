@@ -2,7 +2,10 @@
 
 namespace TheInvisibleMan\Slate\Primitives\Clips\Filters;
 
-interface Filter
+abstract class Filter
 {
-
+    /**
+     * @return array
+     */
+    abstract public function serialize(): array;
 }

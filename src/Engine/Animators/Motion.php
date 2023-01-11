@@ -25,14 +25,14 @@ class Motion extends Animator
     public function animate(VideoClip $clip, int $startingFrame, array &$frameBuffer, Animation $animationSettings, RenderSettings $renderSettings): void
     {
         $speedX = $this->calculateSpeed(
-            $animationSettings->getStartingPosition()->getX(),
-            $animationSettings->getEndingPosition()->getX(),
+            $clip->getPosition()->getX(),
+            $animationSettings->getTargetPosition()->getX(),
             $animationSettings->getDuration()
         );
 
         $speedY = $this->calculateSpeed(
-            $animationSettings->getStartingPosition()->getY(),
-            $animationSettings->getEndingPosition()->getY(),
+            $clip->getPosition()->getY(),
+            $animationSettings->getTargetPosition()->getY(),
             $animationSettings->getDuration()
         );
 

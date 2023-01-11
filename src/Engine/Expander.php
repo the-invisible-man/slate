@@ -2,6 +2,7 @@
 
 namespace TheInvisibleMan\Slate\Engine;
 
+use TheInvisibleMan\Slate\Engine\Support\Frame;
 use TheInvisibleMan\Slate\Engine\Support\Timeline;
 use TheInvisibleMan\Slate\Primitives\Composition;
 use TheInvisibleMan\Slate\Primitives\Sequence;
@@ -34,7 +35,7 @@ class Expander
     /**
      * @param Sequence $sequence
      * @param RenderSettings $renderSettings
-     * @return array
+     * @return Frame[]
      */
     protected function expandSequence(Sequence $sequence, RenderSettings $renderSettings): array
     {

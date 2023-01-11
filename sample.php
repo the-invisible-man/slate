@@ -13,6 +13,7 @@ use TheInvisibleMan\Slate\Primitives\Animations\Motion;
 use TheInvisibleMan\Slate\Primitives\Composition;
 use TheInvisibleMan\Slate\Engine\RenderSettings;
 use TheInvisibleMan\Slate\Primitives\Clips\Abstracts\VideoClip;
+use TheInvisibleMan\Slate\Engine\Expander;
 
 require_once './vendor/autoload.php';
 
@@ -53,7 +54,7 @@ $fadeIn = new FadeIn;
 $fadeIn->setDuration(6);
 
 $freeze = new Freeze;
-$freeze->setDuration(120);
+$freeze->setDuration(2);
 
 $fadeOut = new FadeOut;
 $fadeOut->setDuration(6);
@@ -63,15 +64,11 @@ $fadeOut->setDuration(6);
 $moveToTarget = $textInitialPosition->addY(300);
 $moveIn = new Motion;
 $moveIn->setDuration(6)
-    ->setStartingPosition($textInitialPosition)
-    ->setEndingPosition($moveToTarget);
-
-\Symfony\Component\VarDumper\VarDumper::dump($moveIn);
+    ->setTargetPosition($moveToTarget);
 
 $moveOut = new Motion;
 $moveOut->setDuration(6)
-    ->setStartingPosition($moveToTarget)
-    ->setEndingPosition($moveToTarget->y(600));
+    ->setTargetPosition($moveToTarget->y(600));
 
 // Compounds allow us to mix two effects into
 // the same animation. Here we're joining the fade with the
@@ -86,8 +83,8 @@ $textExitTween->add($moveOut)
     ->add($fadeOut);
 
 // Animate object
-$text->addAnimation($textEnterTween);
-//    ->addAnimation($freeze)
+$text->addAnimation($textEnterTween)
+    ->addAnimation($freeze);
 //    ->addAnimation($textExitTween);
 
 // We want the rectangle to stay in view the whole time so
@@ -109,7 +106,7 @@ $sequence->layerVideoClip($text);           // Middle layer
 $comp = new Composition;
 $comp->append($sequence);
 
-$expander = new \TheInvisibleMan\Slate\Engine\Expander;
+$expander = new Expander;
 $settings = new RenderSettings;
 
 $settings->frameRate = 24;
@@ -118,4 +115,21 @@ $settings->workingDirectory = '/Users/cgranados/slate-working-dir';
 
 $timeline = $expander->expand($comp, $settings);
 
-\Symfony\Component\VarDumper\VarDumper::dump($timeline);
+$frameCount = 0 ;
+
+foreach ($timeline->getFrames() as $frame) {
+    echo "\nFrame {$frameCount}";
+    $frameCount++;
+
+    foreach ($frame->getLayers() as $objectId => $clip) {
+        echo "\nObject {$objectId}. Type: ".get_class($clip);
+        echo "\nPosition {$clip->getPosition()->getX()}";
+        echo "\nPosition {$clip->getPosition()->getY()}";
+
+        foreach ($clip->getFilters() as $filter) {
+            echo "\nFilter type: ".get_class($filter);
+            \Symfony\Component\VarDumper\VarDumper::dump($filter->serialize());
+        }
+    }
+    echo "\n--------------------------------------------------";
+}

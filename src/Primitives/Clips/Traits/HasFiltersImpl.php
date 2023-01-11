@@ -20,4 +20,12 @@ trait HasFiltersImpl
         $this->filters[] = $filter;
         return $this;
     }
+
+    /**
+     * @return Filter[]
+     */
+    public function getFilters(): array
+    {
+        return $this->filters;
+    }
 }

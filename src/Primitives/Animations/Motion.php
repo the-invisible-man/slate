@@ -14,46 +14,23 @@ class Motion implements Animation
     /**
      * @var Coordinate
      */
-    protected Coordinate $startingPosition;
-
-    /**
-     * @var Coordinate
-     */
-    protected Coordinate $endingPosition;
+    protected Coordinate $targetPosition;
 
     /**
      * @return Coordinate
      */
-    public function getStartingPosition(): Coordinate
+    public function getTargetPosition(): Coordinate
     {
-        return $this->startingPosition;
-    }
-
-    /**
-     * @param Coordinate $startingPosition
-     * @return $this
-     */
-    public function setStartingPosition(Coordinate $startingPosition): self
-    {
-        $this->startingPosition = $startingPosition;
-        return $this;
-    }
-
-    /**
-     * @return Coordinate
-     */
-    public function getEndingPosition(): Coordinate
-    {
-        return $this->endingPosition;
+        return $this->targetPosition;
     }
 
     /**
      * @param Coordinate $endingPosition
      * @return $this
      */
-    public function setEndingPosition(Coordinate $endingPosition): self
+    public function setTargetPosition(Coordinate $endingPosition): self
     {
-        $this->endingPosition = $endingPosition;
+        $this->targetPosition = $endingPosition;
         return $this;
     }
 

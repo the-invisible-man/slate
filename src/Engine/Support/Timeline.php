@@ -11,6 +11,7 @@ class Timeline
 
     /**
      * @param Frame $frame
+     * @param int $frameNumber
      * @return $this
      */
     public function addFrame(Frame $frame, int $frameNumber): self
@@ -20,12 +21,20 @@ class Timeline
     }
 
     /**
+     * @return Frame[]
+     */
+    public function getFrames(): array
+    {
+        return $this->frames;
+    }
+
+    /**
      * @param array $frames
      * @return void
      */
     public function appendFrames(array $frames): void
     {
-        $this->frames[] = $frames;
+        $this->frames = array_merge($this->frames, $frames);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace TheInvisibleMan\Slate\Primitives\Clips\Filters;
 
-class Opacity implements Filter
+class Opacity extends Filter
 {
     /**
      * @var int
@@ -17,5 +17,15 @@ class Opacity implements Filter
     {
         $this->opacity = $value;
         return $this;
+    }
+
+    /**
+     * @return int[]
+     */
+    public function serialize(): array
+    {
+        return [
+            'opacity' => $this->opacity,
+        ];
     }
 }

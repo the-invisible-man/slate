@@ -22,6 +22,14 @@ class Frame
     }
 
     /**
+     * @return VideoClip[]
+     */
+    public function getLayers(): array
+    {
+        return $this->layers;
+    }
+
+    /**
      * Layers a video clip and maintains the ID
      *
      * @param VideoClip $clip
@@ -50,6 +58,16 @@ class Frame
         }
 
         return $this->layers[$clipId];
+    }
+
+    /**
+     * @param VideoClip $initialClip
+     * @return VideoClip|null
+     */
+    public function getClipByInitialInstance(VideoClip $initialClip):? VideoClip
+    {
+        $clipId = spl_object_id($initialClip);
+        return $this->layers[$clipId] ?? null;
     }
 
     /**

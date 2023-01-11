@@ -12,6 +12,6 @@ class Freeze implements Animation
 
     public function getAnimator(): Animator
     {
-        return new \TheInvisibleMan\Slate\Engine\Animators\Freeze;
+        return new \TheInvisibleMan\Slate\Engine\Animators\FreezePosition;
     }
 }
