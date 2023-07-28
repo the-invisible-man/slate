@@ -32,6 +32,27 @@ class Expander
         return $timeline;
     }
 
+    public function refactorExpand(Composition $composition, RenderSettings $renderSettings): Timeline
+    {
+        $timeline = new Timeline;
+
+        $sequences = array_reverse($composition->getSequences());
+        $currentSequence = array_pop($sequences);
+        $currentSequenceCursor = 0;
+
+        foreach ($this->createFrames($composition->getDuration()) as $frameNumber => $frame) {
+            // Animate sequence here
+
+            $currentSequenceCursor++;
+            if ($composition->getDuration() <= $currentSequenceCursor) {
+                $currentSequence = array_pop($sequences);
+                $currentSequenceCursor = 0;
+            }
+        }
+
+        return $timeline;
+    }
+
     /**
      * @param Sequence $sequence
      * @param RenderSettings $renderSettings
@@ -50,6 +71,17 @@ class Expander
         }
 
         return $frameBuffer;
+    }
+
+    /**
+     * @param int $amount
+     * @return \Iterator
+     */
+    protected function createFrames(int $amount): \Iterator
+    {
+        for ($i = 0; $i < $amount; $i++) {
+            yield $i => new Frame;
+        }
     }
 
     /**

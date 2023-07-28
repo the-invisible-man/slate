@@ -2,19 +2,11 @@
 
 namespace TheInvisibleMan\Slate\Primitives\Animations;
 
-use TheInvisibleMan\Slate\Engine\Animators\Animator;
-use TheInvisibleMan\Slate\Primitives\Animations\Traits\IsAnimation;
-use TheInvisibleMan\Slate\Primitives\Animations\Interfaces\Animation;
-
-class FadeOut implements Animation
+class FadeOut extends OpacityTween
 {
-    use IsAnimation;
-
-    /**
-     * @return Animator
-     */
-    public function getAnimator(): Animator
+    public function __construct()
     {
-        return new \TheInvisibleMan\Slate\Engine\Animators\FadeOut;
+        $this->startingValue = 100;
+        $this->targetValue = 0;
     }
 }

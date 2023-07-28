@@ -60,6 +60,16 @@ abstract class Animator
     protected function calculateSpeed(int $startingValue, int $endingValue, int $duration, bool $roundUp = true): int
     {
         $distance = $endingValue - $startingValue;
-        return $distance / $duration;
+        return (int) ($distance / $duration);
+    }
+
+    /**
+     * @param int $startingFrame
+     * @param array $frameBuffer
+     * @return Frame|null
+     */
+    protected function getPreviousFrame(int $startingFrame, array &$frameBuffer):? Frame
+    {
+        return $startingFrame > 0 ? $this->getOrCreateFrame($startingFrame - 1, $frameBuffer) : null;
     }
 }

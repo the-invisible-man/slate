@@ -23,6 +23,11 @@ class Sequence
     protected string $background;
 
     /**
+     * @var int
+     */
+    protected int $duration = 0;
+
+    /**
      * @var Coordinate
      */
     protected Coordinate $center;
@@ -59,7 +64,20 @@ class Sequence
     public function layerVideoClip(VideoClip $clip): int
     {
         $this->videoLayers[] = $clip;
+
+        if ($this->duration < $clip->getDuration()) {
+            $this->duration = $clip->getDuration();
+        }
+
         return count($this->videoLayers) - 1;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDuration(): int
+    {
+        return $this->duration;
     }
 
     /**
